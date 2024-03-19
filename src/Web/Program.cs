@@ -40,11 +40,11 @@ app.UseForwardedHeaders();
 
 
 app.UseCors("AllowAnyHeaderAndOrigin");
-/*app.UseSwaggerUi(settings =>
+app.UseSwaggerUi(settings =>
 {
     settings.Path = "/api";
     settings.DocumentPath = "/api/specification.json";
-});*/
+});
 
 app.MapControllerRoute(
     name: "default",
