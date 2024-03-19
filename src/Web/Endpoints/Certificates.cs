@@ -1,7 +1,11 @@
 ﻿using clean_architecure_temp.Application.Certificates.Queries;
 using clean_architecure_temp.Application.Certificates.Commands;
 using Serilog;
+using Microsoft.AspNetCore.Authorization;
+using CleanWebApi.Application.Common.Security;
 namespace clean_architecure_temp.Web.Endpoints;
+
+
 
 public class Certificates : EndpointGroupBase
 {
@@ -10,7 +14,7 @@ public class Certificates : EndpointGroupBase
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-           //.RequireAuthorization()
+            .RequireAuthorization()
             .MapGet(GetCertificates)
             .MapGet(GetCertificateById,"{id:guid}")
             .MapGet(GetCertificateByName, "{studentName:alpha}")
@@ -19,6 +23,8 @@ public class Certificates : EndpointGroupBase
             .MapDelete(DeleteCertificate, "{id}");
     }
 
+
+   
     public Task<List<CertificateDto>> GetCertificates(ISender sender, [AsParameters] GetCertificatesQuery query)
     {
         var _logger = new LoggerConfiguration().CreateLogger();
