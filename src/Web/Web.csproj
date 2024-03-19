@@ -1,10 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">  
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>CleanWebApi.Web</RootNamespace>
     <AssemblyName>CleanWebApi.Web</AssemblyName>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <RootNamespace>CleanWebApi.Web</RootNamespace>
     <AssemblyName>CleanWebApi.Web</AssemblyName>
