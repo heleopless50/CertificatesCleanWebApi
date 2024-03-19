@@ -12,7 +12,7 @@ public class Certificates : EndpointGroupBase
         app.MapGroup(this)
            //.RequireAuthorization()
             .MapGet(GetCertificates)
-            .MapGet(GetCertificateById,"{id:int}")
+            .MapGet(GetCertificateById,"{id:guid}")
             .MapGet(GetCertificateByName, "{studentName:alpha}")
             .MapPost(CreateCertificate)
             .MapPut(UpdateCertificate, "{id}")
