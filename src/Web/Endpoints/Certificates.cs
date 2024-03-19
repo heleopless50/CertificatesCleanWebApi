@@ -12,7 +12,8 @@ public class Certificates : EndpointGroupBase
         app.MapGroup(this)
            //.RequireAuthorization()
             .MapGet(GetCertificates)
-            .MapGet(GetCertificateById,"{id}")
+            .MapGet(GetCertificateById,"{id:int}")
+            .MapGet(GetCertificateByName, "{studentName:alpha}")
             .MapPost(CreateCertificate)
             .MapPut(UpdateCertificate, "{id}")
             .MapDelete(DeleteCertificate, "{id}");
@@ -31,7 +32,12 @@ public class Certificates : EndpointGroupBase
     {
         return sender.Send(query);
     }
-   
+
+    public Task<CertificateDto> GetCertificateByName(ISender sender, [AsParameters] GetCertificateByNameQuery query)
+    {
+        return sender.Send(query);
+    }
+
     public Task<Guid> CreateCertificate(ISender sender, CreateCertificateCommand command)
     {
         return sender.Send(command);

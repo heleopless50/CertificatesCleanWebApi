@@ -897,6 +897,38 @@
           }
         }
       }
+    },
+    "/api/Certificates/{studentName}": {
+      "get": {
+        "tags": [
+          "Certificates"
+        ],
+        "operationId": "GetCertificateByName",
+        "parameters": [
+          {
+            "name": "studentName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateDto"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
