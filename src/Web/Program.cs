@@ -43,7 +43,7 @@ else
 }
 
 app.UseHealthChecks("/health");
-app.UseCors("CorsPolicy");
+app.UseCors("AllowAll");
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
