@@ -43,10 +43,10 @@ else
 }
 
 app.UseHealthChecks("/health");
-//app.UseHttpsRedirection();
+app.UseCors("CorsPolicy");
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
-app.UseCors("CorsPolicy");
 
 
 app.UseSwaggerUi(settings =>
