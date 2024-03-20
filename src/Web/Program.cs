@@ -29,6 +29,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,9 +45,9 @@ else
 
 app.UseHealthChecks("/health");
 app.UseCors("AllowAll");
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
+app.UseHttpsRedirection();
 
 
 app.UseSwaggerUi(settings =>
