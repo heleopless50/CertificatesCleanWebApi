@@ -44,7 +44,7 @@ else
 
 app.UseHealthChecks("/health");
 app.UseCors("AllowAll");
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
 
