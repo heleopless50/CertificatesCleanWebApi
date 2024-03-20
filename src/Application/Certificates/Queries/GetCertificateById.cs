@@ -9,7 +9,7 @@ using CleanWebApi.Application.Common.Interfaces;
 namespace clean_architecure_temp.Application.Certificates.Queries;
 
 public record GetCertificateByIdQuery : IRequest<CertificateDto>{
-    public Guid Id { get; set; }
+    public string? Id { get; set; }
 
 };
 
@@ -25,7 +25,8 @@ public class GetCertificateByIdHandler : IRequestHandler<GetCertificateByIdQuery
     }
     public async Task<CertificateDto> Handle(GetCertificateByIdQuery request, CancellationToken cancellationToken)
     {
-           var certificate = await _context.Certificates.Where(a => a.Id == request.Id).ProjectTo<CertificateDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+ 
+           var certificate = await _context.Certificates.Where(a => a.Id.ToString() ==request.Id || a.RegistrationNumber == request.Id || a.StudentName == request.Id).ProjectTo<CertificateDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
         if (certificate == null)
         {
             throw new Exception("Certificate not found");

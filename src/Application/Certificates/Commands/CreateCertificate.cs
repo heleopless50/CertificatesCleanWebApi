@@ -20,7 +20,7 @@ public record CreateCertificateCommand : IRequest<Guid>
 
     public string CertificateExpirationDate { get; set; } = string.Empty;
     public string CertificateIssuer { get; set; } = string.Empty;
-    public long? RegistrationNumber { get; set; }
+    public string? RegistrationNumber { get; set; }
 }
 
 

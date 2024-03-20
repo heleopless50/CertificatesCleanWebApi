@@ -5,17 +5,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 
-builder.Services.AddCors(options =>
+/*builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAnyHeaderAndOrigin",
+    options.AddPolicy("AllowAll",
         builder =>
         {
             builder.AllowAnyOrigin()
                    .AllowAnyHeader()
                    .AllowAnyMethod();
+                 
         });
 });
+*/
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
+    builder
+    .WithOrigins("localhost", "http://localhost", "http://localhost", "http://localhost:4200")
+    .AllowAnyMethod()
+    .AllowAnyHeader().AllowCredentials();
+    
 
+}));
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
@@ -30,16 +39,16 @@ if (app.Environment.IsDevelopment())
 else
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    //app.UseHsts();
 }
 
-app.UseHealthChecks("/health");
+//app.UseHealthChecks("/health");
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
+app.UseCors("CorsPolicy");
 
 
-app.UseCors("AllowAnyHeaderAndOrigin");
 app.UseSwaggerUi(settings =>
 {
     settings.Path = "/api";
