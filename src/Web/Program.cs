@@ -19,7 +19,7 @@ builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 */
 builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
     builder
-    .WithOrigins("localhost", "http://localhost", "http://localhost", "http://localhost:4200")
+    .WithOrigins("localhost", "http://localhost", "http://localhost", "http://localhost:4200","http://arishuniversity.com/", "https://arishuniversity.com/")
     .AllowAnyMethod()
     .AllowAnyHeader().AllowCredentials();
     
