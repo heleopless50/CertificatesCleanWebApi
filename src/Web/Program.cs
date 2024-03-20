@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 
-/*builder.Services.AddCors(options =>
+builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         builder =>
@@ -16,15 +16,15 @@ builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
                  
         });
 });
-*/
-builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
+
+/*builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
     builder
-    .WithOrigins("localhost", "http://localhost", "http://localhost", "http://localhost:4200","http://arishuniversity.com/", "https://arishuniversity.com/")
+    .WithOrigins("localhost", "http://localhost", "http://localhost", "http://localhost:4200","http://arishuniversity.com", "https://arishuniversity.com/")
     .AllowAnyMethod()
     .AllowAnyHeader().AllowCredentials();
     
 
-}));
+}));*/
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
@@ -42,7 +42,7 @@ else
     //app.UseHsts();
 }
 
-//app.UseHealthChecks("/health");
+app.UseHealthChecks("/health");
 app.UseCors("CorsPolicy");
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
