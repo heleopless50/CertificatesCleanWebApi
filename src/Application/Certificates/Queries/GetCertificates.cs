@@ -27,6 +27,9 @@ public class GetCertificatesHandler : IRequestHandler<GetCertificatesQuery, List
     }
     public async Task<List<CertificateDto>> Handle(GetCertificatesQuery request, CancellationToken cancellationToken)
     {
+        try
+        {
+
         var _logger = new LoggerConfiguration().CreateLogger();
         _logger.Error("second step");
         _logger.Error(_context.Certificates.ToQueryString());
@@ -35,6 +38,10 @@ public class GetCertificatesHandler : IRequestHandler<GetCertificatesQuery, List
         return await _context.Certificates
             .ProjectTo<CertificateDto>(_mapper.ConfigurationProvider)
             .ToListAsync();
+        }catch (Exception ex)
+        {
+            throw new Exception("problem 3 ", ex);
+        }
 
     }
 }

@@ -25,13 +25,20 @@ public class GetCertificateByIdHandler : IRequestHandler<GetCertificateByIdQuery
     }
     public async Task<CertificateDto> Handle(GetCertificateByIdQuery request, CancellationToken cancellationToken)
     {
- 
-           var certificate = await _context.Certificates.Where(a => a.Id.ToString() ==request.Id || a.RegistrationNumber == request.Id || a.StudentName == request.Id).ProjectTo<CertificateDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
-        if (certificate == null)
-        {
-            throw new Exception("Certificate not found");
+        try
+        {     
+            var certificate = await _context.Certificates.Where(a => a.Id.ToString() ==request.Id || a.RegistrationNumber == request.Id || a.StudentName == request.Id).ProjectTo<CertificateDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+            if (certificate == null)
+            {
+                throw new Exception("Certificate not found");
+            }
+            return certificate;
         }
-        return certificate;
+        catch (Exception ex)
+        {
+           throw new Exception("problem", ex);
+        }
+
 
     }
 }

@@ -25,12 +25,20 @@ public class GetCertificateByRegisterationNumbereHandler : IRequestHandler<GetCe
     }
     public async Task<CertificateDto> Handle(GetCertificateByRegisterationNumberQuery request, CancellationToken cancellationToken)
     {
+        try
+        {
+
            var certificate = await _context.Certificates.Where(a => a.RegistrationNumber == request.RegisterationNumber).ProjectTo<CertificateDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
         if (certificate == null)
         {
             throw new Exception("Certificate not found");
         }
         return certificate;
+
+        }catch (Exception ex)
+        {
+            throw new Exception("problem2", ex);
+        }
 
     }
 }
