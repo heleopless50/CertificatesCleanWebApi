@@ -1,4 +1,5 @@
 using CleanWebApi.Infrastructure.Data;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,10 +44,13 @@ else
     app.UseHsts();
 }
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 app.UseHealthChecks("/health");
 app.UseCors("AllowAll");
 app.UseStaticFiles();
-app.UseForwardedHeaders();
 //app.UseHttpsRedirection();
 
 
