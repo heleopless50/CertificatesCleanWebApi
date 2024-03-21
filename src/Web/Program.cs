@@ -49,12 +49,12 @@ else
     app.UseHsts();
 }
 
+app.UseCors("AllowAll");
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 app.UseHealthChecks("/health");
-app.UseCors("AllowAll");
 app.UseStaticFiles();
 //app.UseHttpsRedirection();
 
