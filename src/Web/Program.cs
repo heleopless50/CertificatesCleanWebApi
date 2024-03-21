@@ -47,7 +47,7 @@ app.UseHealthChecks("/health");
 app.UseCors("AllowAll");
 app.UseStaticFiles();
 app.UseForwardedHeaders();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 
 app.UseSwaggerUi(settings =>
