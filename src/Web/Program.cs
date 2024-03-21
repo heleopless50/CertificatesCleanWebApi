@@ -1,3 +1,4 @@
+using System.Net;
 using CleanWebApi.Infrastructure.Data;
 using Microsoft.AspNetCore.HttpOverrides;
 
@@ -29,7 +30,11 @@ builder.Services.AddCors(options =>
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
-
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.KnownProxies.Add(IPAddress.Parse("193.203.165.215"));
+    options.KnownProxies.Add(IPAddress.Parse("195.35.15.23"));
+});
 
 var app = builder.Build();
 
