@@ -55,6 +55,7 @@ public class Certificates : EndpointGroupBase
     */
 
     //[Authorize]
+    [Authorize(Roles = "TrainingCenterManager")]
     public Task<Guid> CreateCertificate(ISender sender, CreateCertificateCommand command)
     {
         return sender.Send(command);

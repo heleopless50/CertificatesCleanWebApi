@@ -805,7 +805,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": [
+              "TrainingCenterManager"
+            ]
+          }
+        ]
       }
     },
     "/api/Certificates/{id}": {
