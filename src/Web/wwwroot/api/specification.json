@@ -904,6 +904,31 @@
           }
         }
       }
+    },
+    "/api/MyApplicationUser": {
+      "post": {
+        "tags": [
+          "MyApplicationUser"
+        ],
+        "operationId": "GetApplicationUserWithRoles",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationUserDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1493,6 +1518,23 @@
           "registrationNumber": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "ApplicationUserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userRoles": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
